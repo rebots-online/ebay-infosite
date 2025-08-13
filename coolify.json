@@ -1,0 +1,27 @@
+{
+  "name": "ebay-infographic",
+  "description": "eBay Infographic Application",
+  "type": "static",
+  "build": {
+    "baseDirectory": "dist",
+    "command": "npm install && npm run build"
+  },
+  "docker": {
+    "enabled": true,
+    "dockerfile": "Dockerfile",
+    "context": "."
+  },
+  "env": {
+    "NODE_ENV": "production",
+    "VITE_API_URL": "${VITE_API_URL}",
+    "GEMINI_API_KEY": "${GEMINI_API_KEY}"
+  },
+  "ports": {
+    "http": 80
+  },
+  "deploy": {
+    "autoDeploy": true,
+    "autoStop": true,
+    "restartPolicy": "always"
+  }
+}
