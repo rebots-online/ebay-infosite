@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Float & The Façade: An Interactive Investigation into eBay</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Energetic & Playful (Adapted for a serious, high-contrast corporate investigation theme) -->
+    <!-- Application Structure Plan: The infographic is structured as a top-down narrative investigation, guiding the user through the core arguments of the report. It starts with the high-level financial distortion (The Float), drills into the operational mechanics causing it (The Take Rate & User Harm), and culminates in the legal consequences (The Breach of Trust). This linear flow makes the complex argument easy to follow. A sticky navigation bar allows users to jump between these key "exhibits." Interactivity is focused on revealing data layers (e.g., toggling the "float" on the income chart) to make the report's "de-inflation" model tangible and impactful for the user. -->
+    <!-- Visualization & Content Choices: 
+        - The Float Engine: Goal: Compare. Viz: Interactive Stacked Bar Chart (Chart.js). Justification: Visually demonstrates how much of the reported income is non-operational float. A toggle button allows users to see the "Pure Marketplace" income, directly illustrating the report's primary finding.
+        - The Inflated Take Rate: Goal: Change/Compare. Viz: Line Chart (Chart.js). Justification: The persistent gap between the "Reported" and "Clean" take rate lines is a powerful visual that shows a systemic issue over time.
+        - The "Seller Protection" Racket: Goal: Organize/Inform. Viz: Structured HTML/CSS Flow Diagram. Justification: A step-by-step diagram is clearer than a list for explaining the coercive process sellers face.
+        - The AI Mirage: Goal: Compare. Viz: Side-by-side HTML/CSS comparison. Justification: Starkly contrasts the marketing hype with user reality, highlighting the misrepresentation.
+        - Breach of Trust: Goal: Organize/Inform. Viz: Styled HTML/CSS Diagram. Justification: Uses color and structure to clearly show the direct conflict between legal duty and corporate practice, which is more impactful than a simple table.
+        - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .nav-active {
+            color: #2563eb;
+            font-weight: 600;
+        }
+        .chart-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+        }
+        .stat-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+        .btn-toggle {
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .flow-step {
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        .flow-step:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 2rem;
+            bottom: -1rem;
+            width: 2px;
+            background-color: #d1d5db;
+        }
+        .flow-step-dot {
+            position: absolute;
+            left: 0.5rem;
+            top: 0.5rem;
+            width: 1.25rem;
+            height: 1.25rem;
+            border-radius: 9999px;
+            background-color: #3b82f6;
+            border: 2px solid white;
+        }
+    </style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="text-gray-800">
+
+    <header class="bg-white/90 backdrop-blur-sm sticky top-0 z-50 shadow-md">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-xl font-bold text-gray-900">The Float & The Façade</h1>
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
+                <a href="#exhibit-a" class="hover:text-blue-600 transition-colors">The Float Engine</a>
+                <a href="#exhibit-b" class="hover:text-blue-600 transition-colors">The Inflated Take Rate</a>
+                <a href="#exhibit-c" class="hover:text-blue-600 transition-colors">The User Harm</a>
+                <a href="#exhibit-d" class="hover:text-blue-600 transition-colors">The Legal Breach</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section class="text-center max-w-4xl mx-auto mb-20">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">An Investigation into eBay's Financial Misrepresentations</h2>
+            <p class="mt-4 text-lg text-gray-600">This report deconstructs eBay's financial narrative, revealing a systemic reliance on non-operational income, improper accounting, and a breach of statutory trust. The data shows a business model that prioritizes financial extraction over core marketplace health.</p>
+        </section>
+
+        <!-- Exhibit A: The Float Engine -->
+        <section id="exhibit-a" class="mb-20 scroll-mt-24">
+            <div class="text-center mb-10">
+                <span class="text-sm font-bold text-blue-600 tracking-wider uppercase">Exhibit A</span>
+                <h3 class="text-3xl font-bold mt-2">The Float Engine: Monetizing User Funds</h3>
+                <p class="max-w-3xl mx-auto mt-3 text-gray-600">A material portion of eBay's profit comes not from its marketplace, but from interest earned on billions in seller and buyer funds it holds ("the float"). This chart compares eBay's reported pre-tax income with an adjusted "Pure Marketplace" income, which removes this non-operational float revenue.</p>
+            </div>
+            <div class="stat-card">
+                 <div class="text-center mb-4">
+                    <button id="toggleFloat" class="btn-toggle bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-semibold shadow-sm hover:bg-blue-700">Show "Pure Marketplace" Income</button>
+                </div>
+                <div class="chart-container">
+                    <canvas id="floatChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exhibit B: The Inflated Take Rate -->
+        <section id="exhibit-b" class="mb-20 scroll-mt-24">
+            <div class="text-center mb-10">
+                <span class="text-sm font-bold text-blue-600 tracking-wider uppercase">Exhibit B</span>
+                <h3 class="text-3xl font-bold mt-2">The Inflated Take Rate</h3>
+                <p class="max-w-3xl mx-auto mt-3 text-gray-600">eBay's "take rate" (revenue as a % of sales) is inflated by improper fees on sales tax and revenue from failed transactions. This chart compares the reported rate to a "Clean Take Rate," which excludes the direct costs of transaction losses, revealing a consistent overstatement.</p>
+            </div>
+            <div class="stat-card">
+                <div class="chart-container">
+                    <canvas id="takeRateChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exhibit C: The User Harm -->
+        <section id="exhibit-c" class="mb-20 scroll-mt-24">
+            <div class="text-center mb-10">
+                <span class="text-sm font-bold text-blue-600 tracking-wider uppercase">Exhibit C</span>
+                <h3 class="text-3xl font-bold mt-2">The Architecture of User Harm</h3>
+                <p class="max-w-3xl mx-auto mt-3 text-gray-600">The financial distortions are direct results of operational policies that harm users. The "Seller Protection" program operates as a coercive system, while the "AI" narrative masks technological shortcomings.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="stat-card">
+                    <h4 class="font-bold text-xl mb-4 text-center">The "Seller Protection" Racket</h4>
+                    <div class="relative space-y-6">
+                        <div class="flow-step">
+                            <div class="flow-step-dot"></div>
+                            <h5 class="font-semibold">Funds Held Hostage</h5>
+                            <p class="text-sm text-gray-600">eBay places buyer's payment on hold, extending the hold period far beyond settlement needs to grow the interest-earning float.</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-dot"></div>
+                            <h5 class="font-semibold">Coercive Refunds</h5>
+                            <p class="text-sm text-gray-600">In a dispute, the seller is forced to refund the buyer using their own external funds, while eBay continues to hold the original payment.</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-dot"></div>
+                            <h5 class="font-semibold">Negative Balances</h5>
+                            <p class="text-sm text-gray-600">Sellers are driven into negative balances, owing eBay for fees and refunds on sales for which they were never paid.</p>
+                        </div>
+                         <div class="flow-step">
+                             <div class="flow-step-dot bg-red-500"></div>
+                            <h5 class="font-semibold">Profit from Friction</h5>
+                            <p class="text-sm text-gray-600">eBay profits from the interest on the held funds and retains fees, monetizing the very transaction failure it claims to protect against.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <h4 class="font-bold text-xl mb-4 text-center">The AI Mirage</h4>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="text-center border-r pr-4">
+                            <h5 class="font-semibold mb-2">The Investor Pitch</h5>
+                            <p class="text-sm text-gray-600 italic">"Unlocking magical innovations..."</p>
+                            <p class="text-sm text-gray-600 italic">"AI shopping agent..."</p>
+                            <p class="text-sm text-gray-600 italic">"Effortless, fun, and uniquely tailored."</p>
+                        </div>
+                        <div class="text-center">
+                            <h5 class="font-semibold mb-2">The User Reality</h5>
+                            <p class="text-sm text-gray-600 italic">"A fixed decision tree."</p>
+                            <p class="text-sm text-gray-600 italic">"500-character limit for evidence."</p>
+                            <p class="text-sm text-gray-600 italic">"An 'Item Not As Described' machine."</p>
+                        </div>
+                    </div>
+                     <p class="text-xs text-center mt-6 text-gray-500">The chasm between the "magical AI" narrative and the dysfunctional reality suggests a tool to inflate investor sentiment, not improve the platform.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exhibit D: The Legal Breach -->
+        <section id="exhibit-d" class="scroll-mt-24">
+            <div class="text-center mb-10">
+                <span class="text-sm font-bold text-blue-600 tracking-wider uppercase">Exhibit D</span>
+                <h3 class="text-3xl font-bold mt-2">Breach of a Statutorily Deemed Trust (Canada)</h3>
+                <p class="max-w-3xl mx-auto mt-3 text-gray-600">By collecting GST/HST in Canada, eBay becomes a "deemed supplier" under the Excise Tax Act, legally imposing the role of a trustee. eBay's practices are in direct violation of this non-negotiable duty.</p>
+            </div>
+            <div class="stat-card p-8">
+                <div class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6 items-center">
+                        <div class="p-4 bg-blue-50 rounded-lg">
+                            <h5 class="font-bold">Statutory Duty</h5>
+                            <p class="text-gray-700">Hold collected tax funds "in trust for Her Majesty... separate and apart from the property of the person."</p>
+                        </div>
+                        <div class="text-center md:text-5xl font-extrabold text-red-500">≠</div>
+                        <div class="p-4 bg-red-50 rounded-lg">
+                            <h5 class="font-bold">eBay's Corporate Practice</h5>
+                            <p class="text-gray-700">Commingles tax funds into its general float, disclaims its fiduciary role, and earns interest on them for corporate profit.</p>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center mt-6 font-semibold text-red-600">This is a direct and systemic breach of Canadian law.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-white mt-20">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <h4 class="font-bold text-lg">Conclusion: A Call for Regulatory Scrutiny</h4>
+            <p class="max-w-3xl mx-auto mt-2 text-gray-400 text-sm">The evidence indicates eBay's growth narrative is a façade, propped up by a float generated through policies that harm users and contravene the law. This report calls for formal investigations by the U.S. Securities and Exchange Commission (SEC) and the Canada Revenue Agency (CRA) to ensure corporate accountability.</p>
+        </div>
+    </footer>
+
+    <script type="module" src="./index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
