@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: The Nexus Canvas Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #118AB2, #06D6A0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+        <header class="text-center my-12">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight text-[#073B4C]">From <span class="gradient-text">Chaos</span> to <span class="gradient-text">Cohesion</span></h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Introducing Nexus Canvas: The unified platform that reclaims your time and supercharges your workflow.</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div class="md:col-span-2 lg:col-span-3 bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-[#073B4C] mb-2">The Fragmented Reality</h2>
+                <p class="text-gray-600 mb-6">Modern product teams lose countless hours to context-switching between a scattered collection of specialized tools. This inefficiency stifles creativity and leads to critical information falling through the cracks.</p>
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4 text-center">
+                    <div class="p-4 rounded-lg bg-slate-50 w-full md:w-auto">
+                        <span class="text-2xl">💡</span>
+                        <p class="font-semibold">Brainstorm</p>
+                        <p class="text-sm text-gray-500">Miro/Mural</p>
+                    </div>
+                    <div class="text-2xl font-bold text-[#FF6B6B] transform rotate-90 md:rotate-0">➔</div>
+                    <div class="p-4 rounded-lg bg-slate-50 w-full md:w-auto">
+                        <span class="text-2xl">🎨</span>
+                        <p class="font-semibold">Design</p>
+                        <p class="text-sm text-gray-500">Figma/Sketch</p>
+                    </div>
+                    <div class="text-2xl font-bold text-[#FFD166] transform rotate-90 md:rotate-0">➔</div>
+                    <div class="p-4 rounded-lg bg-slate-50 w-full md:w-auto">
+                        <span class="text-2xl">📋</span>
+                        <p class="font-semibold">Manage</p>
+                        <p class="text-sm text-gray-500">Jira/Trello</p>
+                    </div>
+                    <div class="text-2xl font-bold text-[#06D6A0] transform rotate-90 md:rotate-0">➔</div>
+                    <div class="p-4 rounded-lg bg-slate-50 w-full md:w-auto">
+                        <span class="text-2xl">💬</span>
+                        <p class="font-semibold">Communicate</p>
+                        <p class="text-sm text-gray-500">Slack/Zoom</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h2 class="text-xl font-bold text-[#073B4C] mb-2">Built for Every Role</h2>
+                <p class="text-gray-600 mb-4">Nexus Canvas empowers every member of the team by providing tools tailored to their unique workflows, boosting efficiency across the board.</p>
+                <div class="chart-container h-64 md:h-72">
+                    <canvas id="personaChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h2 class="text-xl font-bold text-[#073B4C] mb-2">Core Communication Layer</h2>
+                <p class="text-gray-600 mb-4">Integrate voice, recording, and flexible sharing modes directly into your workspace for seamless collaboration.</p>
+                <div class="chart-container h-64 md:h-72">
+                    <canvas id="communicationChart"></canvas>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-lg p-6">
+                <h2 class="text-xl font-bold text-[#073B4C] mb-2">Integrated Toolkits</h2>
+                <p class="text-gray-600 mb-4">From wireframes to roadmaps, all the tools you need are in one place, eliminating the need for external apps.</p>
+                <div class="chart-container h-64 md:h-72">
+                    <canvas id="toolkitsChart"></canvas>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 lg:col-span-3 bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-[#073B4C] mb-2">Your AI Co-Pilot</h2>
+                <p class="text-gray-600 mb-6">Leverage a powerful AI assistant that can observe, analyze, and generate content, turning rough ideas into polished assets instantly.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="bg-[#118AB2]/10 p-6 rounded-lg">
+                        <h3 class="font-bold text-lg text-[#118AB2]">Observe & Analyze</h3>
+                        <p class="mt-2 text-gray-700">Summarize content, organize brainstorms, and identify relationships within your canvas.</p>
+                    </div>
+                    <div class="bg-[#06D6A0]/10 p-6 rounded-lg">
+                        <h3 class="font-bold text-lg text-[#06D6A0]">Generate & Create</h3>
+                        <p class="mt-2 text-gray-700">Generate UI layouts, user flows, and API structures from simple text descriptions.</p>
+                    </div>
+                    <div class="bg-[#FFD166]/10 p-6 rounded-lg">
+                        <h3 class="font-bold text-lg text-[#FFD166]">Convert & Refine</h3>
+                        <p class="mt-2 text-gray-700">Transform messy sketches into clean diagrams and generate boilerplate code from prototypes.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-2 lg:col-span-3 bg-white rounded-2xl shadow-lg p-6 md:p-8">
+                <h2 class="text-2xl font-bold text-center text-[#073B4C] mb-6">The New Workflow: Unified & Intelligent</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold text-center text-[#FF6B6B] mb-4">Before Nexus</h3>
+                        <div class="space-y-3 relative pl-8">
+                            <div class="absolute left-3 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+                            <div class="relative flex items-center">
+                                <div class="absolute -left-5 z-10 w-6 h-6 bg-[#FF6B6B] rounded-full"></div>
+                                <p class="bg-gray-100 p-3 rounded-md w-full">Brainstorm in one tool</p>
+                            </div>
+                            <div class="relative flex items-center">
+                                <div class="absolute -left-5 z-10 w-6 h-6 bg-[#FF6B6B] rounded-full"></div>
+                                <p class="bg-gray-100 p-3 rounded-md w-full">Export/Import assets</p>
+                            </div>
+                            <div class="relative flex items-center">
+                                <div class="absolute -left-5 z-10 w-6 h-6 bg-[#FF6B6B] rounded-full"></div>
+                                <p class="bg-gray-100 p-3 rounded-md w-full">Design in another</p>
+                            </div>
+                            <div class="relative flex items-center">
+                                <div class="absolute -left-5 z-10 w-6 h-6 bg-[#FF6B6B] rounded-full"></div>
+                                <p class="bg-gray-100 p-3 rounded-md w-full">Manually create tickets</p>
+                            </div>
+                            <div class="relative flex items-center">
+                                <div class="absolute -left-5 z-10 w-6 h-6 bg-[#FF6B6B] rounded-full"></div>
+                                <p class="bg-gray-100 p-3 rounded-md w-full">Lose context in chat</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-center text-[#06D6A0] mb-4">With Nexus Canvas</h3>
+                        <div class="space-y-3 relative pl-8">
+                            <div class="absolute left-3 top-0 bottom-0 w-0.5 bg-gray-200"></div>
+                            <div class="relative flex items-center">
+                                <div class="absolute -left-5 z-10 w-6 h-6 bg-[#06D6A0] rounded-full"></div>
+                                <p class="bg-gray-100 p-3 rounded-md w-full">Brainstorm, design, and plan in one canvas</p>
+                            </div>
+                            <div class="relative flex items-center">
+                                <div class="absolute -left-5 z-10 w-6 h-6 bg-[#06D6A0] rounded-full"></div>
+                                <p class="bg-gray-100 p-3 rounded-md w-full">Ask AI to convert ideas to wireframes</p>
+                            </div>
+                            <div class="relative flex items-center">
+                                <div class="absolute -left-5 z-10 w-6 h-6 bg-[#06D6A0] rounded-full"></div>
+                                <p class="bg-gray-100 p-3 rounded-md w-full">Generate tasks directly from elements</p>
+                            </div>
+                             <div class="relative flex items-center">
+                                <div class="absolute -left-5 z-10 w-6 h-6 bg-[#06D6A0] rounded-full"></div>
+                                <p class="bg-gray-100 p-3 rounded-md w-full">Collaborate with voice and comments in-context</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-3 bg-white rounded-2xl shadow-lg p-6">
+                 <h2 class="text-xl font-bold text-[#073B4C] mb-2 text-center">Measuring Our Success</h2>
+                 <p class="text-gray-600 mb-4 text-center max-w-2xl mx-auto">Our development is guided by ambitious goals focused on user value, speed, and creating a truly intelligent collaborative environment.</p>
+                <div class="chart-container h-80 md:h-96">
+                    <canvas id="goalsChart"></canvas>
+                </div>
+            </div>
+
+        </main>
+
+        <footer class="text-center mt-16 mb-8">
+            <p class="text-gray-500">The Future of Collaboration is Unified. The Future is Nexus Canvas.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const FONT_COLOR = '#073B4C';
+        const GRID_COLOR = '#e2e8f0';
+        const PALETTE = {
+            red: '#FF6B6B',
+            yellow: '#FFD166',
+            green: '#06D6A0',
+            blue: '#118AB2',
+            navy: '#073B4C'
+        };
+
+        function formatLabel(str, maxLen) {
+            if (str.length <= maxLen) {
+                return str;
+            }
+            const words = str.split(' ');
+            let currentLine = '';
+            const lines = [];
+            for (const word of words) {
+                if ((currentLine + word).length > maxLen) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            return Array.isArray(label) ? label.join(' ') : label;
+        };
+        
+        const commonChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: FONT_COLOR,
+                        font: {
+                            family: "'Inter', sans-serif"
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    ticks: { color: FONT_COLOR },
+                    grid: { color: GRID_COLOR }
+                },
+                x: {
+                    ticks: { color: FONT_COLOR },
+                    grid: { color: 'transparent' }
+                }
+            }
+        };
+
+        const personaData = {
+            labels: ['Product Managers', 'UX/UI Designers', 'Developers', 'Marketing Teams'].map(l => formatLabel(l, 16)),
+            datasets: [{
+                label: 'Estimated Efficiency Gain',
+                data: [30, 45, 25, 20],
+                backgroundColor: [PALETTE.blue, PALETTE.green, PALETTE.yellow, PALETTE.red],
+                borderColor: '#ffffff',
+                borderWidth: 2
+            }]
+        };
+        new Chart(document.getElementById('personaChart'), {
+            type: 'bar',
+            data: personaData,
+            options: { ...commonChartOptions, indexAxis: 'y' }
+        });
+
+        const communicationData = {
+            labels: ['Voice Integration', 'Screencasting', 'Async Comments', 'Live Broadcast'],
+            datasets: [{
+                data: [30, 25, 25, 20],
+                backgroundColor: [PALETTE.blue, PALETTE.green, PALETTE.yellow, PALETTE.red],
+                hoverOffset: 4
+            }]
+        };
+        new Chart(document.getElementById('communicationChart'), {
+            type: 'doughnut',
+            data: communicationData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top', labels: { color: FONT_COLOR } },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+
+        const toolkitsData = {
+            labels: ['Design & Proto', 'Business Planning', 'API Mockups'],
+            datasets: [{
+                data: [50, 35, 15],
+                backgroundColor: [PALETTE.green, PALETTE.blue, PALETTE.yellow],
+                hoverOffset: 4
+            }]
+        };
+        new Chart(document.getElementById('toolkitsChart'), {
+            type: 'pie',
+            data: toolkitsData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top', labels: { color: FONT_COLOR } },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+
+        const goalsData = {
+            labels: ['User Stickiness', 'Feature Adoption', 'Development Speed', 'Collaboration', 'AI Integration'],
+            datasets: [{
+                label: 'V1.0 Goals',
+                data: [8, 9, 7, 9, 8],
+                fill: true,
+                backgroundColor: 'rgba(6, 214, 160, 0.2)',
+                borderColor: PALETTE.green,
+                pointBackgroundColor: PALETTE.green,
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: PALETTE.green
+            }, {
+                label: 'Future Ambition',
+                data: [10, 10, 9, 10, 10],
+                fill: true,
+                backgroundColor: 'rgba(17, 138, 178, 0.2)',
+                borderColor: PALETTE.blue,
+                pointBackgroundColor: PALETTE.blue,
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: PALETTE.blue
+            }]
+        };
+        new Chart(document.getElementById('goalsChart'), {
+            type: 'radar',
+            data: goalsData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top', labels: { color: FONT_COLOR } },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                },
+                scales: {
+                    r: {
+                        angleLines: { color: GRID_COLOR },
+                        grid: { color: GRID_COLOR },
+                        pointLabels: {
+                            color: FONT_COLOR,
+                            font: { size: 14 }
+                        },
+                        ticks: {
+                            color: FONT_COLOR,
+                            backdropColor: 'rgba(255, 255, 255, 0.75)'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
